@@ -1,0 +1,62 @@
+{
+    "name": "One Night Ultimate Werewolf",
+    "global_prompt": "You are playing a game called the One Night Ultimate Werewolf with 4 other players. Here are the game rules:\n\n## Information and roles\nAt the beginning of the game, the candidate roles are selected and will contain 3 more than the amount of players. Each player randomly gets a role, and the remaining 3 roles will be placed in the `role pool` (where contains roles that are not assigned to players).\nDue to the presence of 5 players, there are a total of 8 candidate roles in the game, namely 2 Villagers, 2 Werewolves, 1 Seer, 1 Robber, 1 Troublemaker and 1 Insomniac, which means some roles may not exist among the players in some cases. Each role has a special ability. Descriptions of their abilities are as follows:\n- Villager: The most common role in the game. The Villager has no special abilities or information. The goal of the Villager is to find and vote out a Werewolf.\n- Werewolf: The Werewolf is a member on Team Werewolf. The Werewolf is allowed to check out his teammates in the Night phase. The goal of the Werewolf is to survive and to have at least one Werewolf alive (even not himself) at the end of the game.\n- Seer: The Seer is a member on Team Village. The Seer is allowed to check one other player's role or two roles in the `role pool` in the Night phase. The goal of the Seer is to find and vote out a Werewolf.\n- Robber: The Robber is a member on Team Village. The Robber is allowed to switch his or her role with another player's role, and then view his or her new role in the Night phase. The goal of the Robber is to find and vote out a Werewolf.\n- Troublemaker: The Troublemaker is a member on Team Village. The Troublemaker is allowed to swap roles between two other players, without looking at those cards in the Night phase. The goal of the Troublemaker is to find and vote out a Werewolf.\n- Insomniac: The Insomniac is a member on Team Village. The Insomniac is allowed to check his or her final role at the end of the Night phase. So the Insomniac is the only one knows his or her role for sure during the Day and Voting phase. The goal of the Insomniac is to find and vote out a Werewolf.\n\nThere are three phases in the game: Night, Day and Voting.\n1. Night phase: In this phase, several players will be called on by Moderator to take their night action according to their initial roles. But the other players did not know what actual action they took. And players with a Villager role never wake up in the Night phase.\n2. Day phase: After the Night phase, players discuss amongst themselves who they believe the Werewolves are. All players may say anything, but may never show their roles to anyone. Because certain roles can change other players' roles, some players will believe they are one role, while they are actually a different one.\n3. Voting phase: After several rounds of discussion during the Day phase, players vote for other players they believe is most likely to be a Werewolf if they think they are on Team Village. The player with the most votes dies and reveals his role.\n\n## Call Order in the Night phase\nThe Moderator calls roles to take actions or get information in the Night phase in the following order: 1. Werewolf, 2. Seer, 3. Robber, 4. Troublemaker, 5. Insomniac.\n\n## Winning Conditions\nThere are two teams in the game: Team Village and Team Werewolf.\n- Team Village contains Villager, Seer, Robber, Troublemaker and Insomniac;\n- Team Werewolf contains Werewolf.\nYour objective in the game depends on the team your role belongs to:\nTeam Village wins:\n- If at least one Werewolf dies. Even if one or more players who are not Werewolves die in addition to a Werewolf dying, everyone on Team Village wins.\n- If no one is a Werewolf and no one dies. It is possible for no one to be a Werewolf if all Werewolf cards are in the center.\nTeam Werewolf wins:\n- Only if at least one player is a Werewolf and no Werewolves are killed.",
+    "environment": {
+        "env_type": "werewolf_hard",
+        "role_pool": ["Troublemaker", "Werewolf", "Seer", "Robber", "Villager", "Insomniac", "Werewolf", "Villager"],
+        "max_discuss_round": 3,
+        "parallel": false
+    },
+    "players": [
+        {
+            "name": "player1",
+            "role": "Robber",
+            "backend": {
+                "backend_type": "gemini",
+                "temperature": 1.0,
+                "max_tokens": 1000
+            },
+            "structure": "dpins:no"
+        },
+        {
+            "name": "player2",
+            "role": "Insomniac",
+            "backend": {
+                "backend_type": "gemini",
+                "temperature": 1.0,
+                "max_tokens": 1000
+            },
+            "structure": "dpins:no"
+        },
+        {
+            "name": "player3",
+            "role": "Seer",
+            "backend": {
+                "backend_type": "gemini",
+                "temperature": 1.0,
+                "max_tokens": 1000
+            },
+            "structure": "dpins:no"
+        },
+        {
+            "name": "player4",
+            "role": "Werewolf",
+            "backend": {
+                "backend_type": "gemini",
+                "temperature": 1.0,
+                "max_tokens": 1000
+            },
+            "structure": "dpins:no"
+        },
+        {
+            "name": "player5",
+            "role": "Troublemaker",
+            "backend": {
+                "backend_type": "gemini",
+                "temperature": 1.0,
+                "max_tokens": 1000
+            },
+            "structure": "dpins:no"
+        }
+    ]
+}

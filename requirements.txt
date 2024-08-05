@@ -1,0 +1,13 @@
+d3rlpy==2.3.0
+fuzzywuzzy==0.18.0
+python-levenshtein==0.25.1
+numpy==1.25.0
+prompt_toolkit==3.0.43
+protobuf==3.20.3
+python-dotenv==1.0.1
+rich==13.7.1
+setuptools==67.8.0
+tenacity==8.2.2
+tqdm==4.65.0
+openai==0.27.8
+google-generativeai==0.5.4
