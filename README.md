@@ -1,5 +1,5 @@
 # Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf*
-This repo contains an implementation of the *One Night Ultimate Werewolf* game environment based on [ChatArena](https://github.com/Farama-Foundation/chatarena), and the RL-instructed LLM-based agent framework proposed in the paper: **Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf***.
+This repo contains an implementation of the *One Night Ultimate Werewolf* game environment and the RL-instructed LLM-based agent framework proposed in the paper **Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf***.
 
 ## Getting Start
 
