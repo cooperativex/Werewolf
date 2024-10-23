@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 from abc import abstractmethod
 
 from ..config import BackendConfig, Configurable
@@ -26,14 +26,7 @@ class IntelligenceBackend(Configurable):
         return BackendConfig(**self._config_dict)
 
     @abstractmethod
-    def query(self, agent_name: str, role_desc: str, history_messages: List[Message], global_prompt: str = None,
-              request_msg: str = None, *args, **kwargs) -> str:
-        raise NotImplementedError
-
-    @abstractmethod
-    async def async_query(self, agent_name: str, role_desc: str, history_messages: List[Message],
-                          global_prompt: str = None, request_msg: str = None, *args, **kwargs) -> str:
-        """Async querying"""
+    def query(self, agent_name: str, prompts: Dict[str, str], request_msg: str = None, *args, **kwargs) -> str:
         raise NotImplementedError
 
     # reset the state of the backend
