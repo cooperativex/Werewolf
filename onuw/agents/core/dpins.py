@@ -116,20 +116,20 @@ Based on the game rules, role descriptions, messages and your belief, think abou
                     action_prompt = self.role.get_night_prompt()
                 else:
                     belief_prompt = self.role.get_belief_prompt()
-                    current_belief = self.backend.new_query(agent_name=self.name, 
-                                                            prompts=self._construct_prompts(current_phase="Belief Modeling", 
-                                                                                            history_messages=observation["message_history"]), 
-                                                            request_msg=belief_prompt)
+                    current_belief = self.backend.query(agent_name=self.name, 
+                                                        prompts=self._construct_prompts(current_phase="Belief Modeling", 
+                                                                                        history_messages=observation["message_history"]), 
+                                                        request_msg=belief_prompt)
                     # print("Current Belief: ", current_belief)
                     if "Day" in current_phase:
                         if self.structure == "dpins:llm":
                             # Choose speaking strategy by LLM
                             choose_prompt = self.role.get_strategy_prompt()
-                            chosen_result = self.backend.new_query(agent_name=self.name,
-                                                                   prompts=self._construct_prompts(current_phase="Speaking Strategy",
-                                                                                                   history_messages=observation["message_history"],
-                                                                                                   current_belief=current_belief),
-                                                                   request_msg=choose_prompt)
+                            chosen_result = self.backend.query(agent_name=self.name,
+                                                               prompts=self._construct_prompts(current_phase="Speaking Strategy",
+                                                                                               history_messages=observation["message_history"],
+                                                                                               current_belief=current_belief),
+                                                               request_msg=choose_prompt)
                             # print("Chosen Speaking Strategy: ", chosen_result)
                             
                             json_list = extract_jsons(chosen_result)
@@ -154,11 +154,11 @@ Based on the game rules, role descriptions, messages and your belief, think abou
                     else:
                         action_prompt = self.role.get_voting_prompt()
                 
-                response = self.backend.new_query(agent_name=self.name, 
-                                                  prompts=self._construct_prompts(current_phase=current_phase, 
-                                                                                  history_messages=observation["message_history"],
-                                                                                  current_belief=current_belief), 
-                                                  request_msg=action_prompt)
+                response = self.backend.query(agent_name=self.name, 
+                                              prompts=self._construct_prompts(current_phase=current_phase, 
+                                                                              history_messages=observation["message_history"],
+                                                                              current_belief=current_belief), 
+                                              request_msg=action_prompt)
                 # print("Chosen Action: ", response)
                 
                 action_list = extract_jsons(response)

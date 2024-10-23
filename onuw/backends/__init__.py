@@ -3,13 +3,11 @@ from ..config import BackendConfig
 from .base import IntelligenceBackend
 from .openai import OpenAIChat
 from .human import Human
-from .anthropic import Claude
 from .gemini import Gemini
 
 ALL_BACKENDS = [
     Human,
     OpenAIChat,
-    Claude,
     Gemini,
 ]
 

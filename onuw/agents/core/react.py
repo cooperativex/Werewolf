@@ -81,10 +81,10 @@ Based on the game rules, role descriptions and messages, think about who is on y
                 else:
                     action_prompt = self.role.get_voting_prompt()
                 
-                response = self.backend.new_query(agent_name=self.name, 
-                                                  prompts=self._construct_prompts(current_phase=current_phase, 
-                                                                                  history_messages=observation["message_history"]), 
-                                                  request_msg=action_prompt)
+                response = self.backend.query(agent_name=self.name, 
+                                              prompts=self._construct_prompts(current_phase=current_phase, 
+                                                                              history_messages=observation["message_history"]), 
+                                              request_msg=action_prompt)
                 # print("Chosen Action: ", response)
                 
                 action_list = extract_jsons(response)
