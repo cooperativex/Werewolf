@@ -15,3 +15,6 @@ Try to sow doubt and confusion among other players to avoid detection.\n""" + se
     
     def get_night_prompt(self):
         return ""
+    
+    def get_night_input(self):
+        return {}

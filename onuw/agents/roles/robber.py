@@ -1,4 +1,6 @@
 from .base import BaseRole
+from prompt_toolkit import prompt
+from prompt_toolkit.styles import Style
 
 
 class Robber(BaseRole):
@@ -24,3 +26,20 @@ You must return your response in a JSON format that can be parsed by Python `jso
 }}
 """
         return action_prompt
+    
+    def get_night_input(self):
+        human_input = prompt(
+            [('class:info', "[Info] "),
+             ('class:info_text', "As a Robber, you may choose to switch roles with another player and then become the new role you switched.\n"),
+             ('class:user_prompt', "Whether you want to switch roles with others?\nType your choice (`yes` or `no`): ")],
+            style=Style.from_dict({'info': "red bold", 'user_prompt': 'ansicyan underline'})
+        )
+        switch = True if "y" in human_input else False
+        player = prompt(
+            [('class:info', "[Info] "),
+             ('class:info_text', "You can only choose one player from the following options: "),
+             ('class:choices', f"{', '.join(self.current_players)}.\n"),
+             ('class:user_prompt', "Type the player you want to switch roles with: ")],
+            style=Style.from_dict({'info': "red bold", 'choices': "orange bold", 'user_prompt': 'ansicyan underline'})
+        ) if switch else ""
+        return {"thought": "", "switch": switch, "player": player}

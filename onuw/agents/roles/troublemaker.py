@@ -1,4 +1,6 @@
 from .base import BaseRole
+from prompt_toolkit import prompt
+from prompt_toolkit.styles import Style
 
 
 class Troublemaker(BaseRole):
@@ -25,3 +27,27 @@ You must return your response in a JSON format that can be parsed by Python `jso
 }}
 """
         return action_prompt
+    
+    def get_night_input(self):
+        human_input = prompt(
+            [('class:info', "[Info] "),
+             ('class:info_text', "As a Troublemaker, you may switch the roles of two other players, but you will not know their roles.\n"),
+             ('class:user_prompt', "Whether you want to swap roles between two other players?\nType your choice (`yes` or `no`): ")],
+            style=Style.from_dict({'info': "red bold", 'user_prompt': 'ansicyan underline'})
+        )
+        swap = True if "y" in human_input else False
+        if swap:
+            player_1 = prompt(
+                [('class:info', "[Info] "),
+                 ('class:info_text', "You can only choose two different players from the following options: "),
+                 ('class:choices', f"{', '.join(self.current_players)}.\n"),
+                 ('class:user_prompt', "Type the first player: ")],
+                style=Style.from_dict({'info': "red bold", 'choices': "orange bold", 'user_prompt': 'ansicyan underline'})
+            )
+            player_2 = prompt(
+                [('class:user_prompt', "Type the second player: ")],
+                style=Style.from_dict({'user_prompt': 'ansicyan underline'})
+            )
+        else:
+            player_1 = player_2 = ""
+        return {"thought": "", "swap": swap, "player_1": player_1, "player_2": player_2}

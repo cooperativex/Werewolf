@@ -13,3 +13,6 @@ Remember, you're on Team Village. Your goal is to help other teammates to find o
     
     def get_night_prompt(self):
         return ""
+    
+    def get_night_input(self):
+        return {}

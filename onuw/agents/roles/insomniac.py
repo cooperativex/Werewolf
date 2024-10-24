@@ -14,3 +14,6 @@ However, if you are on Team Werewolf, it means try you were switched before, so 
     
     def get_night_prompt(self):
         return ""
+    
+    def get_night_input(self):
+        return {}

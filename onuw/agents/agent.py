@@ -6,7 +6,7 @@ from ..backends import IntelligenceBackend, load_backend
 from ..memory import SYSTEM_NAME
 from ..config import AgentConfig, Configurable, BackendConfig
 from .roles import ROLE_REGISTRY
-from .core import DPIns, ReAct
+from .core import DPIns, ReAct, Human
 
 # agent structures
 AGENT_STRUCT = {
@@ -14,7 +14,8 @@ AGENT_STRUCT = {
     "dpins:no": DPIns,
     "dpins:random": DPIns,
     "dpins:llm": DPIns,
-    "dpins:rl": DPIns
+    "dpins:rl": DPIns,
+    "human": Human
 }
 # A special signal sent by the player to indicate that it is not possible to continue the conversation, and it requests to end the conversation.
 # It contains a random UUID string to avoid being exploited by any of the players.

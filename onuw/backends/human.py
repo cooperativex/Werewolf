@@ -17,7 +17,7 @@ class Human(IntelligenceBackend):
         super().__init__(**kwargs)
 
     def to_config(self) -> BackendConfig:
-        return BackendConfig(backend_type=self.type_name)
+        return BackendConfig(backend_type=self.type_name, model="human")
 
     def query(self, agent_name: str, **kwargs) -> str:
         raise HumanBackendError(agent_name)

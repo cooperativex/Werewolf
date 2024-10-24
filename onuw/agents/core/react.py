@@ -4,6 +4,7 @@ import logging
 import uuid
 import time
 
+from .base import AgentCore
 from ..roles import BaseRole
 from ...backends import IntelligenceBackend
 from ...utils import extract_jsons
@@ -15,16 +16,12 @@ SIGNAL_END_OF_CONVERSATION = f"<<<<<<END_OF_CONVERSATION>>>>>>{uuid.uuid4()}"
 MAX_RETRIES = 5
 
 
-class ReAct(object):
+class ReAct(AgentCore):
     """
     Reasoning and Action LLM-based Agent
     """
     def __init__(self, role: BaseRole, backend: IntelligenceBackend, global_prompt: str = None, **kwargs):
-        self.backend = backend
-        self.role = role
-        self.name = self.role.name
-        self.role_desc = self.role.role_description
-        self.global_prompt = global_prompt
+        super().__init__(role=role, backend=backend, global_prompt=global_prompt, **kwargs)
     
     def _construct_prompts(self, current_phase, history_messages, **kwargs):
         # Merge the role description and the global prompt as the system prompt for the agent

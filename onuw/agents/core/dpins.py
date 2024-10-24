@@ -8,6 +8,7 @@ import d3rlpy
 import numpy as np
 import random
 
+from .base import AgentCore
 from ..roles import BaseRole, SPEAKING_STRATEGY
 from ...backends import IntelligenceBackend
 from ...utils import extract_jsons, get_embeddings
@@ -32,21 +33,16 @@ def choosing_speaking_strategy(policy, messages, belief):
     return action.squeeze()
 
 
-class DPIns(object):
+class DPIns(AgentCore):
     """
     Discussion Policy Instructed (DPIns) LLM-based Agent
     """
     def __init__(self, role: BaseRole, backend: IntelligenceBackend, global_prompt: str = None, **kwargs):
-        self.backend = backend
-        self.role = role
-        self.name = self.role.name
-        self.role_desc = self.role.role_description
+        super().__init__(role=role, backend=backend, global_prompt=global_prompt, **kwargs)
         
         self.structure = kwargs.get("structure", "")
         if self.structure == "dpins:rl":
-            self.policy = d3rlpy.load_learnable("chatarena/agents/models/discussion_policy.d3")
-        
-        self.global_prompt = global_prompt
+            self.policy = d3rlpy.load_learnable("onuw/agents/models/discussion_policy.d3")
     
     def _construct_prompts(self, current_phase, history_messages, **kwargs):
         # Merge the role description and the global prompt as the system prompt for the agent

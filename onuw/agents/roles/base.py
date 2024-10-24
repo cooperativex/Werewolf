@@ -1,4 +1,6 @@
 from typing import List
+from prompt_toolkit import prompt
+from prompt_toolkit.styles import Style
 
 SPEAKING_STRATEGY = {
     "honest_evidence": "You need to provide some honest evidence or information in your public speech, and your evidence must be consistent with the information or beliefs you know.",
@@ -84,3 +86,23 @@ You must return your response in a JSON format that can be parsed by Python `jso
 }}
 """
         return choosing_strategy_prompt
+    
+    def get_night_input(self):
+        raise NotImplementedError
+
+    def get_day_input(self):
+        speech = prompt(
+            [('class:user_prompt', "Type your speech content: ")],
+            style=Style.from_dict({'user_prompt': 'ansicyan underline'})
+        )
+        return {"thought": "", "speech": speech}
+    
+    def get_voting_input(self):
+        vote = prompt(
+            [('class:info', "[Info] "),
+             ('class:info_text', "You can vote for one other player from the following options: "),
+             ('class:choices', f"{', '.join(self.current_players)}.\n"),
+             ('class:user_prompt', "Type the player you want to vote for: ")],
+            style=Style.from_dict({'info': "red bold", 'choices': "orange bold", 'user_prompt': 'ansicyan underline'})
+        )
+        return {"thought": "", "player": vote}
