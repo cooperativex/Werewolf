@@ -57,3 +57,20 @@ The following options are only enabled when added:
 
 - `random`: Randomly assign roles at the beginning
 - `cli`: Launch cli (the interactive interface in the command line)
+
+### About Human Participation
+If one wants to participate in the game, please refer to the game configs in `configs`, and set `structure` in corresponding player's config to **"human"**.
+
+> *P.S.* When setting `structure` to **"human"**, it will render the `backend` config of that player invalid. But the `backend` config **has to be retained** to ensure the game loads properly. And you can change the `backend_type` to **"human"** to keep consistency (though it has no effect).
+
+## Citation
+If you find our work or repositroy useful for your research, you can use the following BibTeX entry:
+```bibtex
+@article{
+    jin2024learning,
+    title={Learning to Discuss Strategically: A Case Study on One Night Ultimate Werewolf},
+    author={Jin, Xuanfa and Wang, Ziyan and Du, Yali and Fang, Meng and Zhang, Haifeng and Wang, Jun},
+    journal={arXiv preprint arXiv:2405.19946},
+    year={2024}
+}
+```
