@@ -3,7 +3,7 @@ name: Sync Fork
 on:
   schedule:
     - cron: '0 */6 * * *'  # 每6小时同步一次
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:        # 允许手动触发
 
 jobs:
   sync:
@@ -11,25 +11,13 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        
+      - name: Sync Fork
+        uses: TG908/fork-sync@v1.1
         with:
-          fetch-depth: 0
-          
-      - name: Configure Git
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          
-      - name: Add upstream remote
-        run: |
-          git remote add upstream ${{ secrets.UPSTREAM_REPO_URL }}
-          
-      - name: Fetch upstream
-        run: |
-          git fetch upstream
-          
-      - name: Sync branch
-        run: |
-          git checkout main
-          git merge upstream/main
-          git push origin main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: KylJin
+          base: master
+          head: master
+          repo: Werewolf
