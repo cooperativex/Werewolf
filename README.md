@@ -1,5 +1,5 @@
-# Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf*
-This repo contains an implementation of the *One Night Ultimate Werewolf* game environment and the RL-instructed LLM-based agent framework proposed in the paper **Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf***.
+# [NeurIPS 2024] Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf*
+This repo contains an implementation of the *One Night Ultimate Werewolf* game environment and the RL-instructed LLM-based agent framework proposed in the paper [**Learning to Discuss Strategically: A Case Study on *One Night Ultimate Werewolf***](https://nips.cc/virtual/2024/poster/96856) (accepted by NeurIPS 2024).
 
 ## RL-instructed LLM-based Agent Framework
 
